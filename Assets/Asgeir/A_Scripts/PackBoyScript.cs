@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PackBoyScript : MonoBehaviour
@@ -23,6 +24,7 @@ public class PackBoyScript : MonoBehaviour
             if (!revealedPackboy)
             {
                 animator.SetBool("PackboyReveal", true);
+                
             }
 
             if (revealedPackboy)
@@ -32,5 +34,10 @@ public class PackBoyScript : MonoBehaviour
         }
 
 
+    }
+
+    private IEnumerator PackBoyDelay()
+    {
+        yield return new WaitForSeconds(2);
     }
 }
