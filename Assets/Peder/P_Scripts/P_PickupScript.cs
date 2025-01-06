@@ -8,7 +8,7 @@ public class PickUpScript : MonoBehaviour
     public Transform holdPos;
     //if you copy from below this point, you are legally required to like the video
     public float throwForce = 500f; //force at which the object is thrown at
-    public float pickUpRange = 5f; //how far the player can pickup the object from
+    public float pickUpRange = 10f; //how far the player can pickup the object from
     private float rotationSensitivity = 1f; //how fast/slow the object is rotated in relation to mouse movement
     private GameObject heldObj; //object which we pick up
     private Rigidbody heldObjRb; //rigidbody of object we pick up
@@ -66,14 +66,27 @@ public class PickUpScript : MonoBehaviour
     }
     void PickUpObject(GameObject pickUpObj)
     {
-        if (pickUpObj.GetComponent<Rigidbody>()) //make sure the object has a RigidBody
+        if (pickUpObj.GetComponent<Rigidbody>()) // Make sure the object has a Rigidbody
         {
-            heldObj = pickUpObj; //assign heldObj to the object that was hit by the raycast (no longer == null)
-            heldObjRb = pickUpObj.GetComponent<Rigidbody>(); //assign Rigidbody
+            heldObj = pickUpObj; // Assign heldObj to the object that was hit by the raycast
+            heldObjRb = pickUpObj.GetComponent<Rigidbody>(); // Assign Rigidbody
+
+            // Disable physics interactions temporarily
             heldObjRb.isKinematic = true;
-            heldObjRb.transform.parent = holdPos.transform; //parent object to holdposition
-            heldObj.layer = LayerNumber; //change the object layer to the holdLayer
-            //make sure object doesnt collide with player, it can cause weird bugs
+
+            // Move the object to the hold position
+            heldObj.transform.position = holdPos.transform.position;
+
+            // Optionally set the rotation to match the hold position
+            heldObj.transform.rotation = holdPos.transform.rotation;
+
+            // Parent the object to the hold position for smoother following
+            heldObjRb.transform.parent = holdPos.transform;
+
+            // Change the object's layer to avoid unintended interactions
+            heldObj.layer = LayerNumber;
+
+            // Ignore collision between the held object and the player
             Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
         }
     }
