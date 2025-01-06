@@ -9,7 +9,7 @@ public class PickUpScript : MonoBehaviour
     //if you copy from below this point, you are legally required to like the video
     public float throwForce = 500f; //force at which the object is thrown at
     public float pickUpRange = 10f; //how far the player can pickup the object from
-    private float rotationSensitivity = 1f; //how fast/slow the object is rotated in relation to mouse movement
+    //private float rotationSensitivity = 1f; //how fast/slow the object is rotated in relation to mouse movement
     private GameObject heldObj; //object which we pick up
     private Rigidbody heldObjRb; //rigidbody of object we pick up
     private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
@@ -55,7 +55,7 @@ public class PickUpScript : MonoBehaviour
         if (heldObj != null) //if player is holding object
         {
             MoveObject(); //keep object position at holdPos
-            RotateObject();
+            //RotateObject();
             if (Input.GetKeyDown(KeyCode.Mouse0) && canDrop == true) //Mous0 (leftclick) is used to throw, change this if you want another button to be used)
             {
                 StopClipping();
@@ -104,6 +104,7 @@ public class PickUpScript : MonoBehaviour
         //keep object position the same as the holdPosition position
         heldObj.transform.position = holdPos.transform.position;
     }
+    /*
     void RotateObject()
     {
         if (Input.GetKey(KeyCode.R))//hold R key to rotate, change this to whatever key you want
@@ -128,6 +129,7 @@ public class PickUpScript : MonoBehaviour
             canDrop = true;
         }
     }
+    */
     void ThrowObject()
     {
         //same as drop function, but add force to object before undefining it
