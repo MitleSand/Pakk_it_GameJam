@@ -20,14 +20,7 @@ public class PackBoyScript : MonoBehaviour
             // Update the animator based on the new state
             animator.SetBool("packboyReveal", revealedPackboy);
 
-            if (revealedPackboy)
-            {
-                Debug.Log("Reveal Packboy");
-            }
-            else
-            {
-                Debug.Log("Unreveal Packboy");
-            }
+            
         }
     }
 
