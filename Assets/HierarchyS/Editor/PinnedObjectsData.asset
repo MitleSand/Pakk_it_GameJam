@@ -30,3 +30,5 @@ MonoBehaviour:
     objectIds: []
   - sceneName: P_Scene
     objectIds: []
+  - sceneName: A_Scene
+    objectIds: []

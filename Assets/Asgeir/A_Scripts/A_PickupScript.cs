@@ -51,13 +51,13 @@ public class A_PickUpScript : MonoBehaviour
             {
                 MoveObjectToPosition(inspectPos.position, inspectPos.rotation); // Move to inspect position
                 canDrop = false; // Prevent dropping while inspecting
-                Debug.Log("isInspecting");
+                
             }
             else
             {
                 MoveObjectToPosition(holdPos.position, holdPos.rotation); // Move to hold position
                 canDrop = true;
-                Debug.Log("isNotInspecting");
+                
             }
 
             // Throw the object
