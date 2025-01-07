@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-direction: row; flex-grow: 1;">
+        <ui:VisualElement name="assignBlock" class="block-container">
+            <ui:Label text="Assign Custom Icons to Components" class="header-label" />
+            <ui:TextField name="componentNameField" label="Component Name" />
+            <ui:Button name="assignIconButton" text="Assign Icon" class="block-button" />
+            <ui:Button name="clearAllIconsButton" text="Clear All Icons" class="block-button" />
+        </ui:VisualElement>
+        <ui:VisualElement name="assignedBlock" class="block-container">
+            <ui:Label text="Assigned Icons:" class="header-label" />
+            <ui:ScrollView name="assignedIconsScrollView" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
