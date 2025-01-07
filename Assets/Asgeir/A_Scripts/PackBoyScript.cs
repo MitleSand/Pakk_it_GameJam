@@ -19,7 +19,7 @@ public class PackBoyScript : MonoBehaviour
     {
         
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             if (!revealedPackboy)
             {
