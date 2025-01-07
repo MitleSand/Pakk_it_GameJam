@@ -8,6 +8,9 @@ public class PackBoyScript : MonoBehaviour
 
     private bool revealedPackboy = false;
 
+    private bool canToggle = true; // Prevents spamming
+
+    public float toggleCooldown = 1f; // Delay in seconds before the button can be pressed again
 
 
     void Update()
@@ -20,14 +23,14 @@ public class PackBoyScript : MonoBehaviour
             // Update the animator based on the new state
             animator.SetBool("packboyReveal", revealedPackboy);
 
-            
+            StartCoroutine(ToggleCooldown());
         }
     }
 
-    private IEnumerator PackBoyDelay()
+    private IEnumerator ToggleCooldown()
     {
-        
-        yield return new WaitForSeconds(1);
-
+        canToggle = false; // Disable toggling
+        yield return new WaitForSeconds(toggleCooldown); // Wait for the cooldown duration
+        canToggle = true; // Re-enable toggling
     }
 }
