@@ -24,12 +24,14 @@ public class PackBoyScript : MonoBehaviour
             if (!revealedPackboy)
             {
                 animator.SetBool("PackboyReveal", true);
+                Debug.Log("Reaveal Packboy");
                 
             }
 
             if (revealedPackboy)
             {
                 animator.SetBool("PackboyReveal", false);
+                Debug.Log("Unreveal Packboy");
             }
         }
 
