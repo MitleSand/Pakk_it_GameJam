@@ -15,11 +15,11 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0.5745817, g: 0.59278405, b: 0.6792453, a: 1}
-  m_FogMode: 3
+  m_FogColor: {r: 0.32156864, g: 0.4117647, b: 0.49019608, a: 1}
+  m_FogMode: 1
   m_FogDensity: 0.03
   m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_LinearFogEnd: 50
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
@@ -28,7 +28,7 @@ RenderSettings:
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
-  m_FlareStrength: 1
+  m_FlareStrength: 0.6
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
@@ -1628,7 +1628,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 43.996098, y: 43.996098, z: 43.996098}
+  m_LocalScale: {x: 500.5436, y: 500.5436, z: 500.5436}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -35642,6 +35642,7 @@ GameObject:
   - component: {fileID: 2196213697748943257}
   - component: {fileID: 8991794296719005115}
   - component: {fileID: 5145005035181186639}
+  - component: {fileID: 8991794296719005116}
   m_Layer: 0
   m_Name: pCube6
   m_TagString: Untagged
@@ -40514,6 +40515,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7879879453117986636}
   m_Mesh: {fileID: 6606501483488557099, guid: 2eb2df726026385408a1996b4f7037df, type: 3}
+--- !u!65 &8991794296719005116
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7879879453117986636}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.1375456, y: 0.71179235, z: 1.9181241}
+  m_Center: {x: -0.00000011920929, y: -0.0748772, z: 0.0000009536743}
 --- !u!4 &8999214613607157859
 Transform:
   m_ObjectHideFlags: 0
