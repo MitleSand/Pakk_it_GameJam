@@ -1,4 +1,5 @@
 using System.Collections;
+using StarterAssets;
 using UnityEngine;
 
 public class PackBoyScript : MonoBehaviour
@@ -12,25 +13,39 @@ public class PackBoyScript : MonoBehaviour
 
     public float toggleCooldown = 1f; // Delay in seconds before the button can be pressed again
 
+    public FirstPersonController firstPersonController;
 
+
+    private void Start()
+    {
+        firstPersonController = GetComponent<FirstPersonController>();
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
+            
             // Toggle the state of revealedPackboy
             revealedPackboy = !revealedPackboy;
+
+            
 
             // Update the animator based on the new state
             animator.SetBool("packboyReveal", revealedPackboy);
 
             StartCoroutine(ToggleCooldown());
         }
+
+        
+
     }
 
     private IEnumerator ToggleCooldown()
     {
         canToggle = false; // Disable toggling
+        
         yield return new WaitForSeconds(toggleCooldown); // Wait for the cooldown duration
+        
         canToggle = true; // Re-enable toggling
     }
 }
