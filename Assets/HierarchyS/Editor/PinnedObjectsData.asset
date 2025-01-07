@@ -28,3 +28,5 @@ MonoBehaviour:
     - GlobalObjectId_V1-2-c131f7580f733b149b0af6794549f3e7-8806542464718846355-0
   - sceneName: M_Scene
     objectIds: []
+  - sceneName: P_Scene
+    objectIds: []

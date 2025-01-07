@@ -6,42 +6,35 @@ public class PackBoyScript : MonoBehaviour
 
     public Animator animator;
 
-    public bool revealedPackboy = false;
+    private bool revealedPackboy = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
-
         if (Input.GetKeyDown(KeyCode.C))
         {
-            if (!revealedPackboy)
-            {
-                animator.SetBool("packboyReveal", true);
-                Debug.Log("Reaveal Packboy");
-                revealedPackboy = false;
-                
-            }
+            // Toggle the state of revealedPackboy
+            revealedPackboy = !revealedPackboy;
+
+            // Update the animator based on the new state
+            animator.SetBool("packboyReveal", revealedPackboy);
 
             if (revealedPackboy)
             {
-                animator.SetBool("packboyReveal", false);
+                Debug.Log("Reveal Packboy");
+            }
+            else
+            {
                 Debug.Log("Unreveal Packboy");
-                revealedPackboy = true;
             }
         }
-
-
     }
 
     private IEnumerator PackBoyDelay()
     {
-        yield return new WaitForSeconds(2);
+        
+        yield return new WaitForSeconds(1);
+
     }
 }
