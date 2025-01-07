@@ -25,7 +25,6 @@ public class PackBoyScript : MonoBehaviour
             {
                 animator.SetBool("packboyReveal", true);
                 Debug.Log("Reaveal Packboy");
-                revealedPackboy = false;
                 
             }
 
@@ -33,7 +32,6 @@ public class PackBoyScript : MonoBehaviour
             {
                 animator.SetBool("packboyReveal", false);
                 Debug.Log("Unreveal Packboy");
-                revealedPackboy = true;
             }
         }
 
