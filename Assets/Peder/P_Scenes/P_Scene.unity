@@ -940,13 +940,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1346194444}
   - component: {fileID: 1346194445}
+  - component: {fileID: 1346194446}
   m_Layer: 0
   m_Name: PACKBOY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1346194444
 Transform:
   m_ObjectHideFlags: 0
@@ -986,6 +987,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1346194446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346194443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3336b1f015adcfd428da51032fba3387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1346194445}
+  revealedPackboy: 0
 --- !u!1 &1453747764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,7 +1122,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8fdc7b22913d8ff4da8ec20bf4d5897e, type: 2}
+  - {fileID: 2100000, guid: a8557b963a38ec2488a7f45edbb52eac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1193,7 +1208,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8fdc7b22913d8ff4da8ec20bf4d5897e, type: 2}
+  - {fileID: 2100000, guid: dfc022a82602e714c857bcd58e002a84, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7877,10 +7892,7 @@ MonoBehaviour:
   SprintSpeed: 6
   RotationSpeed: 1
   SpeedChangeRate: 10
-  JumpHeight: 1.2
   Gravity: -15
-  JumpTimeout: 0.1
-  FallTimeout: 0.15
   Grounded: 1
   GroundedOffset: -0.14
   GroundedRadius: 0.5
