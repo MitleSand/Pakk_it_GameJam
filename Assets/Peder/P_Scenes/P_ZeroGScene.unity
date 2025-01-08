@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 205488123}
   m_Layer: 0
-  m_Name: -----OBJECTS-----
+  m_Name: ==OBJECTS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,7 +379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 291852427}
   m_Layer: 0
-  m_Name: -----ENVIROMENT-----
+  m_Name: ==ENVIROMENT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -410,7 +410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 622071890}
   m_Layer: 0
-  m_Name: -----CAMERAS-----
+  m_Name: ==CAMERAS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -744,7 +744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 940778890}
   m_Layer: 0
-  m_Name: -----PLAYER-----
+  m_Name: ==PLAYER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -775,7 +775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1267156276}
   m_Layer: 0
-  m_Name: -----LIGHTING-----
+  m_Name: ==LIGHTING
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
