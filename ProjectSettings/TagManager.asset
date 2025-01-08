@@ -7,6 +7,7 @@ TagManager:
   - CinemachineTarget
   - canPickUp
   - Ground
+  - Buttons
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - 
   - Ground
   - 
-  - 
+  - PackBoy
   - holdLayer
   - 
   - 

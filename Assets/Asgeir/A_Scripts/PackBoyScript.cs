@@ -15,6 +15,8 @@ public class PackBoyScript : MonoBehaviour
 
     public FirstPersonController firstPersonController;
 
+    // Tracks whether the cursor is currently visible
+    private bool isCursorVisible = false;
 
     private void Start()
     {
@@ -28,7 +30,14 @@ public class PackBoyScript : MonoBehaviour
             // Toggle the state of revealedPackboy
             revealedPackboy = !revealedPackboy;
 
-            
+            // Toggle cursor visibility
+            isCursorVisible = !isCursorVisible;
+
+            // Update cursor state
+            Cursor.visible = isCursorVisible;
+
+            // Optionally, lock or unlock the cursor
+            Cursor.lockState = isCursorVisible ? CursorLockMode.None : CursorLockMode.Locked;
 
             // Update the animator based on the new state
             animator.SetBool("packboyReveal", revealedPackboy);
