@@ -2369,7 +2369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7de2d74eb048144bbcae2e72e276130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformMover: {fileID: 2195655516421905070}
+  platformMover: {fileID: 0}
   targetPosition: {fileID: 306682816}
 --- !u!65 &1140750411
 BoxCollider:
@@ -12990,7 +12990,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1527663258373455895}
-  - component: {fileID: 2195655516421905070}
   m_Layer: 0
   m_Name: platform_test_belt
   m_TagString: Untagged
@@ -12998,25 +12997,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2195655516421905070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2195655516421905069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a7556f28abfcc249aa6926af890fb32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
-  moveDuration: 3
-  nextSceneName: 
-  packages:
-  - {fileID: 306682811}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!33 &2195872950215148834
 MeshFilter:
   m_ObjectHideFlags: 0
