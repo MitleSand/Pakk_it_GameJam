@@ -5,7 +5,7 @@ public class PackagePickup : MonoBehaviour
     public PlatformMover platformMover; // Reference to the PlatformMover script
     public Transform targetPosition; // Target position where the package will be moved (e.g., player's position)
 
-    void OnCollisionEnter(Collision collision)
+    /*void OnCollisionEnter(Collision collision)
     {
         // Check if the collided object has the "canPickUp" tag
         if (collision.gameObject.CompareTag("canPickUp"))
@@ -18,5 +18,16 @@ public class PackagePickup : MonoBehaviour
 
            
         }
+    }*/
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("canPickUp"))
+        {
+            other.transform.position = targetPosition.position;
+
+            platformMover.CheckPackagesDelivered();
+        }
+
     }
 }
