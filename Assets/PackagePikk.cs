@@ -19,7 +19,7 @@ public class PackagePikk : MonoBehaviour
             }
 
             // Optionally deactivate the package
-            other.gameObject.SetActive(false);
+            //other.gameObject.SetActive(false);
 
             platformMover.CheckPackagesDelivered();
         }

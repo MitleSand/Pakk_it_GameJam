@@ -6,6 +6,8 @@ public class PackagePickup : MonoBehaviour
     public Transform targetPosition; // Target position where the package will be moved (e.g., player's position)
 
     private bool packagePickedUp = false;
+
+
     /*void OnCollisionEnter(Collision collision)
     {
         // Check if the collided object has the "canPickUp" tag
@@ -46,7 +48,7 @@ public class PackagePickup : MonoBehaviour
 
             packagePickedUp = true;
 
-            platformMover.CheckPackagesDelivered();
+            
         }
     }
 

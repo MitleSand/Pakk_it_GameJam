@@ -17,9 +17,14 @@ public class A_PickUpScript : MonoBehaviour
     private bool isInspecting = false; // Tracks if the player is inspecting the object
     private int LayerNumber; // Layer index for holding objects
 
+
+
+    public GameObject delivery;
+
     void Start()
     {
         LayerNumber = LayerMask.NameToLayer("holdLayer"); // Assign layer for held objects
+        
     }
 
     void Update()
@@ -30,13 +35,21 @@ public class A_PickUpScript : MonoBehaviour
             if (heldObj == null)
             {
                 TryPickUpObject();
+                
             }
             else if (canDrop)
             {
                 StopClipping();
                 DropObject();
+                
             }
+            else
+            {
+                
+            }
+            
         }
+
 
         // Inspect the held object
         if (heldObj != null && Input.GetKeyDown(KeyCode.Q))
@@ -47,6 +60,7 @@ public class A_PickUpScript : MonoBehaviour
         // Handle held object movement and interactions
         if (heldObj != null)
         {
+            delivery.gameObject.SetActive(false);
             if (isInspecting)
             {
                 MoveObjectToPosition(inspectPos.position, inspectPos.rotation); // Move to inspect position
@@ -65,6 +79,7 @@ public class A_PickUpScript : MonoBehaviour
             {
                 StopClipping();
                 ThrowObject();
+                delivery.gameObject.SetActive(true);
             }
         }
     }
