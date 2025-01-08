@@ -9,11 +9,15 @@ public class RespawnWithTrigger : MonoBehaviour
     public Transform respawnPoint; // Assign this to your respawn point in the Inspector
     public float respawnDelay = 2.0f; // Time to wait before respawning
 
+    public AudioSource respawnSound;
+
+
     private void OnTriggerEnter(Collider other)
     {
         // Check if the object entering the trigger has a "Player" tag
         if (other.CompareTag("Player"))
         {
+            respawnSound.Play();
             // Start the respawn process
             StartCoroutine(RespawnPlayer(other.gameObject));
         }
