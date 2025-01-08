@@ -10756,11 +10756,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7179918830140238439}
   - component: {fileID: 7561511398893023447}
-  - component: {fileID: 7561511398893023454}
+  - component: {fileID: 7561511398893023455}
   - component: {fileID: 292608453408332333}
   - component: {fileID: 6071342279547890849}
   - component: {fileID: 7561511398893023441}
-  - component: {fileID: 7561511398893023455}
   m_Layer: 8
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -10768,35 +10767,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &7561511398893023454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7561511398893023453}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f64af7a38f0128f429b14f949ec60bde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 4
-  SprintSpeed: 6
-  RotationSpeed: 1
-  SpeedChangeRate: 10
-  JumpHeight: 1.2
-  Gravity: 0
-  JumpTimeout: 0.1
-  FallTimeout: 0.15
-  Grounded: 1
-  GroundedOffset: -0.14
-  GroundedRadius: 0.5
-  GroundLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  CinemachineCameraTarget: {fileID: 2745500032955320710}
-  TopClamp: 90
-  BottomClamp: -90
 --- !u!114 &7561511398893023455
 MonoBehaviour:
   m_ObjectHideFlags: 0
