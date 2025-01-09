@@ -12,6 +12,8 @@ public class RespawnWithTrigger : MonoBehaviour
 {
     private PlayerInput playerInput;
 
+    
+
     public float respawnDelay = 2.0f; // Time to wait before respawning
     private AudioSource respawnSound;
     public AudioClip respawnSoundClip;
@@ -31,6 +33,7 @@ public class RespawnWithTrigger : MonoBehaviour
             // Start the respawn process
             StartCoroutine(RespawnPlayer());
         }
+        
     }
 
     private IEnumerator RespawnPlayer()

@@ -34,7 +34,7 @@ public class A_PickupScript : MonoBehaviour
         // Validate the list
         if (deliveryPoints == null || deliveryPoints.Count == 0)
         {
-            Debug.LogError("Delivery points are not assigned!");
+            Debug.LogError("A_PickupScript:.. Delivery points are not assigned!");
         }
         
 
@@ -71,6 +71,7 @@ public class A_PickupScript : MonoBehaviour
         // Handle held object movement and interactions
         if (heldObj != null)
         {
+            DeactivateCurrentDeliveryPoint();
             //delivery.gameObject.SetActive(false);
             if (isInspecting)
             {

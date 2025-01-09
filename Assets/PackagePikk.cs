@@ -4,34 +4,8 @@ public class PackagePikk : MonoBehaviour
 {
     public PlatformMover platformMover;
     public Transform targetPosition;
-
-    public A_PickupScript pickUpScript;
-
-    void Start()
-    {
-        // Find the HoldPoint GameObject in the hierarchy
-        GameObject holdPoint = GameObject.Find("PlayerCapsule/PlayerCameraRoot");
-
-        if (holdPoint != null)
-        {
-            // Get the A_PickUpScript from the HoldPoint GameObject
-            pickUpScript = holdPoint.GetComponent<A_PickupScript>();
-
-            if (pickUpScript != null)
-            {
-                Debug.Log("A_PickUpScript found and assigned!");
-            }
-            else
-            {
-                Debug.LogError("A_PickUpScript not found on HoldPoint!");
-            }
-        }
-        else
-        {
-            Debug.LogError("HoldPoint not found in hierarchy!");
-        }
-    }
-
+    
+    public A_PickupScript A_PickUpScript;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -48,12 +22,8 @@ public class PackagePikk : MonoBehaviour
 
             // Optionally deactivate the package
             //other.gameObject.SetActive(false);
-            if (pickUpScript != null)
-            {
-                // Call a method or access a variable in A_PickUpScript
-                // Example: pickUpScript.SomeMethod();
-                pickUpScript.CompleteCurrentDelivery();
-            }
+
+            A_PickUpScript.CompleteCurrentDelivery();
 
             platformMover.CheckPackagesDelivered();
         }
