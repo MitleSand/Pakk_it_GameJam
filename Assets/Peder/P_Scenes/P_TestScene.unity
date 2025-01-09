@@ -903,7 +903,7 @@ GameObject:
   m_Component:
   - component: {fileID: 287647016}
   - component: {fileID: 287647018}
-  - component: {fileID: 287647017}
+  - component: {fileID: 287647019}
   m_Layer: 0
   m_Name: Packboy_02
   m_TagString: Untagged
@@ -931,21 +931,6 @@ Transform:
   - {fileID: 1970007493}
   m_Father: {fileID: 2140097817}
   m_LocalEulerAnglesHint: {x: 63.09, y: -21.352, z: 28.435}
---- !u!114 &287647017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 287647015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3336b1f015adcfd428da51032fba3387, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 287647018}
-  toggleCooldown: 1
-  firstPersonController: {fileID: 0}
 --- !u!95 &287647018
 Animator:
   serializedVersion: 7
@@ -968,6 +953,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &287647019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287647015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1339bb007e37ae449c7fd268c06dc90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 287647018}
+  revealedPackboy: 0
 --- !u!1 &306682811
 GameObject:
   m_ObjectHideFlags: 0
