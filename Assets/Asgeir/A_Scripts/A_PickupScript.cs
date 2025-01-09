@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class A_PickUpScript : MonoBehaviour
+public class A_PickupScript : MonoBehaviour
 {
     public GameObject player;
     public Transform holdPos; // Default position for holding the object
@@ -96,12 +96,12 @@ public class A_PickUpScript : MonoBehaviour
             }
         }
         // Example of switching to the next delivery point when pressing 'N'
-        if (Input.GetKeyDown(KeyCode.N))
+        /*if (Input.GetKeyDown(KeyCode.N))
         {
             GoToNextDeliveryPoint();
-        }
+        }*/
     }
-    public void GoToNextDeliveryPoint()
+    /*public void GoToNextDeliveryPoint()
     {
         if (deliveryPoints != null && deliveryPoints.Count > 0)
         {
@@ -120,7 +120,29 @@ public class A_PickUpScript : MonoBehaviour
         {
             Debug.LogWarning("No delivery points available!");
         }
+    }*/
+    // Call this method to mark the current delivery point as completed
+    public void CompleteCurrentDelivery()
+    {
+        if (deliveryPoints != null && deliveryPoints.Count > 0)
+        {
+            // Deactivate the current delivery point
+            DeactivateCurrentDeliveryPoint();
+
+            // Move to the next delivery point if there is one
+            currentDeliveryIndex++;
+            if (currentDeliveryIndex < deliveryPoints.Count)
+            {
+                ActivateDeliveryPoint(currentDeliveryIndex);
+                Debug.Log("Moved to the next delivery point: " + deliveryPoints[currentDeliveryIndex].name);
+            }
+            else
+            {
+                Debug.Log("All delivery points are completed!");
+            }
+        }
     }
+
     // Function to activate a specific delivery point
     private void ActivateDeliveryPoint(int index)
     {
@@ -132,6 +154,18 @@ public class A_PickUpScript : MonoBehaviour
 
         Debug.Log("Active Delivery Point: " + deliveryPoints[index].name);
     }
+
+    // Function to deactivate the current delivery point
+    private void DeactivateCurrentDeliveryPoint()
+    {
+        if (currentDeliveryIndex < deliveryPoints.Count)
+        {
+            deliveryPoints[currentDeliveryIndex].SetActive(false);
+            Debug.Log("Deactivated Delivery Point: " + deliveryPoints[currentDeliveryIndex].name);
+        }
+    }
+
+    //______________________________________________________________________________________________________
 
     void TryPickUpObject()
     {
