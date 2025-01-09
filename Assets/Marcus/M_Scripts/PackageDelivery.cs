@@ -49,6 +49,7 @@ public class PackagePickup : MonoBehaviour
         {
 
             other.transform.position = targetPosition.position;
+            other.transform.rotation = new Quaternion(90,other.transform.rotation.y,0,0);
 
             packagePickedUp = true;
             if (rb != null)
