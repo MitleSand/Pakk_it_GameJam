@@ -13,7 +13,7 @@ public class RespawnWithTrigger : MonoBehaviour
     private PlayerInput playerInput;
 
     public float respawnDelay = 2.0f; // Time to wait before respawning
-    public AudioSource respawnSound;
+    private AudioSource respawnSound;
     public AudioClip respawnSoundClip;
 
     public string loadScene;
@@ -21,6 +21,7 @@ public class RespawnWithTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         playerInput = other.GetComponent<PlayerInput>();
+        respawnSound = GetComponent<AudioSource>();
         // Check if the object entering the trigger has a "Player" tag
         if (other.CompareTag("Player"))
         {
