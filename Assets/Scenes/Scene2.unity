@@ -3706,7 +3706,7 @@ GameObject:
   - component: {fileID: 4609370162486376010}
   m_Layer: 0
   m_Name: Medium_box
-  m_TagString: Untagged
+  m_TagString: canPickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4072,7 +4072,7 @@ GameObject:
   - component: {fileID: 3432374736707611708}
   m_Layer: 0
   m_Name: Small_Box
-  m_TagString: Untagged
+  m_TagString: canPickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4113,7 +4113,7 @@ GameObject:
   - component: {fileID: 2681186780163743448}
   m_Layer: 0
   m_Name: Large_Box
-  m_TagString: Untagged
+  m_TagString: canPickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
