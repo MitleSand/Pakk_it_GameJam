@@ -19,7 +19,7 @@ public class A_PickupScript : MonoBehaviour
 
 
 
-    public GameObject delivery;
+    
 
     // List to hold delivery GameObjects
     public List<GameObject> deliveryPoints;
@@ -56,10 +56,7 @@ public class A_PickupScript : MonoBehaviour
                 DropObject();
 
             }
-            else
-            {
-
-            }
+            
         }
 
         // Inspect the held object
