@@ -1,21 +1,13 @@
 using UnityEngine;
-#if ENABLE_INPUT_SYSTEM
-using UnityEngine.InputSystem;
-#endif
 
 namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]
-    /*
-    #if ENABLE_INPUT_SYSTEM
-    [RequireComponent(typeof(PlayerInput))]
-    #endif
-    */
     public class P_ZeroGMovement_TEST : MonoBehaviour
     {
         [Header("Player Movement")]
         public float MoveSpeed = 4.0f; // Movement speed for Zero-G
-        public float RotationSpeed = 1.0f; // Mouse rotation speed
+        public float RotationSpeed = 5.0f; // Increased mouse rotation speed
 
         [Header("Cinemachine")]
         public GameObject CinemachineCameraTarget; // Reference to camera target
@@ -68,8 +60,9 @@ namespace StarterAssets
             {
                 float deltaTimeMultiplier = Time.deltaTime;
 
-                // Rotate camera up/down
-                _cinemachineTargetPitch += _input.look.y * RotationSpeed * deltaTimeMultiplier;
+                // Adjust rotation speed for better responsiveness
+                float mouseSensitivity = 5.0f; // Adjust sensitivity as needed
+                _cinemachineTargetPitch += _input.look.y * RotationSpeed * mouseSensitivity * deltaTimeMultiplier;
 
                 // Clamp the vertical camera rotation
                 _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
@@ -78,7 +71,7 @@ namespace StarterAssets
                 CinemachineCameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
 
                 // Rotate the player left/right
-                transform.Rotate(Vector3.up * _input.look.x * RotationSpeed * deltaTimeMultiplier);
+                transform.Rotate(Vector3.up * _input.look.x * RotationSpeed * mouseSensitivity * deltaTimeMultiplier);
             }
         }
 
@@ -91,6 +84,17 @@ namespace StarterAssets
         public void StopMovement()
         {
             currentDirection = Vector3.zero; // Stop movement
+        }
+
+        // New methods for forward/backward movement
+        public void MoveForward()
+        {
+            SetDirection(transform.forward); // Move forward relative to player orientation
+        }
+
+        public void MoveBackward()
+        {
+            SetDirection(-transform.forward); // Move backward relative to player orientation
         }
 
         // Utility to clamp angles for vertical rotation

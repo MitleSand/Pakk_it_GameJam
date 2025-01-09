@@ -1,33 +1,29 @@
 using UnityEngine;
 
-public class PackboyButton : MonoBehaviour
+public class P_PackboyButton : MonoBehaviour
 {
-    public enum Direction { Up, Down, Left, Right, Stop }
-
-    public Direction buttonDirection; // Assign this in the Inspector
-    public StarterAssets.P_ZeroGMovement_TEST playerMovement; // Reference to the player's movement script
+    public StarterAssets.P_ZeroGMovement_TEST playerMovement; // Reference to the movement script
+    public Vector3 direction; // Local direction this button sets
+    public bool stopMovement = false; // If this button stops movement
 
     private void OnMouseDown()
     {
-        if (playerMovement == null) return;
-
-        switch (buttonDirection)
+        if (playerMovement != null)
         {
-            case Direction.Up:
-                playerMovement.SetDirection(Vector3.up);
-                break;
-            case Direction.Down:
-                playerMovement.SetDirection(Vector3.down);
-                break;
-            case Direction.Left:
-                playerMovement.SetDirection(Vector3.left);
-                break;
-            case Direction.Right:
-                playerMovement.SetDirection(Vector3.right);
-                break;
-            case Direction.Stop:
+            if (stopMovement)
+            {
                 playerMovement.StopMovement();
-                break;
+            }
+            else
+            {
+                // Convert local direction to world direction based on the player's orientation
+                Vector3 worldDirection = playerMovement.transform.TransformDirection(direction);
+                playerMovement.SetDirection(worldDirection);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Player movement script is not assigned!");
         }
     }
 }
