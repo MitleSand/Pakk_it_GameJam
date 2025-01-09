@@ -42,13 +42,21 @@ public class PackagePickup : MonoBehaviour
     }*/
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("canPickUp") && !packagePickedUp){
+        // Check if the other object has a Rigidbody component
+        Rigidbody rb = other.GetComponent<Rigidbody>();
+
+        if (other.gameObject.CompareTag("canPickUp") && !packagePickedUp)
+        {
 
             other.transform.position = targetPosition.position;
 
             packagePickedUp = true;
+            if (rb != null)
+            {
+                // Remove the Rigidbody component
+                Destroy(rb);
 
-            
+            }
         }
     }
 

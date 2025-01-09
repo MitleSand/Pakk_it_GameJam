@@ -8,6 +8,13 @@ TagManager:
   - canPickUp
   - Ground
   - Buttons
+  - DownButton
+  - LeftButton
+  - RightButton
+  - StopButton
+  - UpButton
+  - ForwardButton
+  - BackwardsButton
   layers:
   - Default
   - TransparentFX
