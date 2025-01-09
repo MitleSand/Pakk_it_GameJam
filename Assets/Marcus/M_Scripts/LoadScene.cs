@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using StarterAssets;
 
 public class PlatformMover : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class PlatformMover : MonoBehaviour
 
     private bool isMoving = false;
 
+    public FirstPersonController firstPersonController;
+
+    
     void Update()
     {
         if (isMoving)
@@ -32,7 +36,7 @@ public class PlatformMover : MonoBehaviour
             }
         }
 
-        if (allDelivered)
+        if (allDelivered && (firstPersonController.Grounded = true))
         {
             StartMoving();
             Debug.Log("Ismoving");
