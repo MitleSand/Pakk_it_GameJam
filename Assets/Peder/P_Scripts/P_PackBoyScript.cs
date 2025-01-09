@@ -1,49 +1,57 @@
 using System.Collections;
+using StarterAssets;
 using UnityEngine;
 
 public class P_PackBoyScript : MonoBehaviour
 {
 
     public Animator animator;
+
     public bool revealedPackboy = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    private bool canToggle = true; // Prevents spamming
 
-    }
+    public float toggleCooldown = 1f; // Delay in seconds before the button can be pressed again
 
-    // Update is called once per frame
+    
+
+    // Tracks whether the cursor is currently visible
+    private bool isCursorVisible = false;
+
+    
     void Update()
-    {
-        PackBoyAnimation();
-    }
-
-    private void PackBoyAnimation()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            if (!revealedPackboy)
-            {
-                animator.SetBool("packboyReveal", true);
-                revealedPackboy = true;
-                Debug.Log("Reaveal Packboy");
-                PackBoyDelay();
-                
-            }
-            else
-            {
-                animator.SetBool("packboyReveal", false);
-                revealedPackboy = false;
-                Debug.Log("Unreveal Packboy");
-                PackBoyDelay();
-            }
+            
+            // Toggle the state of revealedPackboy
+            revealedPackboy = !revealedPackboy;
+
+            // Toggle cursor visibility
+            isCursorVisible = !isCursorVisible;
+
+            // Update cursor state
+            Cursor.visible = isCursorVisible;
+
+            // Optionally, lock or unlock the cursor
+            Cursor.lockState = isCursorVisible ? CursorLockMode.None : CursorLockMode.Locked;
+
+            // Update the animator based on the new state
+            animator.SetBool("packboyReveal", revealedPackboy);
+
+            StartCoroutine(ToggleCooldown());
         }
-    }
+
         
 
-    private IEnumerator PackBoyDelay()
+    }
+
+    private IEnumerator ToggleCooldown()
     {
-        yield return new WaitForSeconds(1);
+        canToggle = false; // Disable toggling
+        
+        yield return new WaitForSeconds(toggleCooldown); // Wait for the cooldown duration
+        
+        canToggle = true; // Re-enable toggling
     }
 }

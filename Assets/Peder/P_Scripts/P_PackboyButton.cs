@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class P_PackboyButton : MonoBehaviour
 {
-    public StarterAssets.P_ZeroGMovement_TEST playerMovement; // Reference to the movement script
+    public StarterAssets.P_ZeroGMovement playerMovement; // Reference to the movement script
     public Vector3 direction; // Local direction this button sets
     public bool stopMovement = false; // If this button stops movement
 
