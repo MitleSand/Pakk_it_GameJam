@@ -4,26 +4,17 @@ using UnityEngine;
 
 public class P_PackBoyScript : MonoBehaviour
 {
-
     public Animator animator;
-
     public bool revealedPackboy = false;
-
-    private bool canToggle = true; // Prevents spamming
-
     public float toggleCooldown = 1f; // Delay in seconds before the button can be pressed again
-
-    
 
     // Tracks whether the cursor is currently visible
     private bool isCursorVisible = false;
 
-    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            
             // Toggle the state of revealedPackboy
             revealedPackboy = !revealedPackboy;
 
@@ -41,17 +32,10 @@ public class P_PackBoyScript : MonoBehaviour
 
             StartCoroutine(ToggleCooldown());
         }
-
-        
-
     }
 
     private IEnumerator ToggleCooldown()
     {
-        canToggle = false; // Disable toggling
-        
         yield return new WaitForSeconds(toggleCooldown); // Wait for the cooldown duration
-        
-        canToggle = true; // Re-enable toggling
     }
 }
