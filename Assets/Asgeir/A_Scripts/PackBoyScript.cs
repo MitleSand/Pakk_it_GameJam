@@ -13,15 +13,12 @@ public class PackBoyScript : MonoBehaviour
 
     public float toggleCooldown = 1f; // Delay in seconds before the button can be pressed again
 
-    public FirstPersonController firstPersonController;
+    
 
     // Tracks whether the cursor is currently visible
     private bool isCursorVisible = false;
 
-    private void Start()
-    {
-        firstPersonController = GetComponent<FirstPersonController>();
-    }
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
