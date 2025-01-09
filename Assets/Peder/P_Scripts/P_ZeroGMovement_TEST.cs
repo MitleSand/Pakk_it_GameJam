@@ -138,16 +138,25 @@ namespace StarterAssets
         private void HandleGroundedMovement()
         {
             Vector3 move = new Vector3(_input.move.x, 0.0f, _input.move.y);
-            groundedVelocity.x = move.x * GroundMoveSpeed;
-            groundedVelocity.z = move.z * GroundMoveSpeed;
+            Vector3 moveDirection = transform.TransformDirection(move) * GroundMoveSpeed;
 
-            if (_controller.isGrounded && _input.jump)
+            groundedVelocity.x = moveDirection.x;
+            groundedVelocity.z = moveDirection.z;
+
+            if (_controller.isGrounded)
             {
-                groundedVelocity.y = JumpForce;
+                if (_input.jump)
+                {
+                    groundedVelocity.y = JumpForce;
+                }
+                else
+                {
+                    groundedVelocity.y = 0.0f; // Reset vertical velocity when on the ground
+                }
             }
             else
             {
-                groundedVelocity.y += Gravity * Time.deltaTime;
+                groundedVelocity.y += Gravity * Time.deltaTime; // Apply gravity when airborne
             }
 
             _controller.Move(groundedVelocity * Time.deltaTime);
