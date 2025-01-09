@@ -52,7 +52,7 @@ public class CursorController : MonoBehaviour
     {
         Ray ray = mainCamera.ScreenPointToRay(controls.Mouse.Position.ReadValue<Vector2>());
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit,1.5f))
         {
             if (hit.collider != null)
             {

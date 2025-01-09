@@ -36,8 +36,7 @@ public class A_PickUpScript : MonoBehaviour
         {
             Debug.LogError("Delivery points are not assigned!");
         }
-        // Ensure only the first delivery point is active at the start
-        ActivateDeliveryPoint(currentDeliveryIndex);
+        
 
     }
 
@@ -72,7 +71,7 @@ public class A_PickUpScript : MonoBehaviour
         // Handle held object movement and interactions
         if (heldObj != null)
         {
-            delivery.gameObject.SetActive(false);
+            //delivery.gameObject.SetActive(false);
             if (isInspecting)
             {
                 MoveObjectToPosition(inspectPos.position, inspectPos.rotation); // Move to inspect position
@@ -91,7 +90,9 @@ public class A_PickUpScript : MonoBehaviour
             {
                 StopClipping();
                 ThrowObject();
-                delivery.gameObject.SetActive(true);
+                //delivery.gameObject.SetActive(true);
+                // Getting the deliverypoint when the object is thrown
+                ActivateDeliveryPoint(currentDeliveryIndex);
             }
         }
         // Example of switching to the next delivery point when pressing 'N'
