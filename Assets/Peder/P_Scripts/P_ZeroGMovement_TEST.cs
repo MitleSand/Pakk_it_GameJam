@@ -1,21 +1,14 @@
 using UnityEngine;
-#if ENABLE_INPUT_SYSTEM
-using UnityEngine.InputSystem;
-#endif
 
 namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]
-    /*
-    #if ENABLE_INPUT_SYSTEM
-    [RequireComponent(typeof(PlayerInput))]
-    #endif
-    */
     public class P_ZeroGMovement_TEST : MonoBehaviour
     {
         [Header("Player Movement")]
         public float MoveSpeed = 4.0f; // Movement speed for Zero-G
-        public float RotationSpeed = 1.0f; // Mouse rotation speed
+        public float RotationSpeed = 5.0f; // Mouse rotation speed
+        public float GlideDamping = 0.95f; // Glide factor; closer to 1 = slower stop
 
         [Header("Cinemachine")]
         public GameObject CinemachineCameraTarget; // Reference to camera target
@@ -24,12 +17,14 @@ namespace StarterAssets
 
         private float _cinemachineTargetPitch;
         private Vector3 currentDirection = Vector3.zero; // The current direction of movement
+        private Vector3 glideVelocity = Vector3.zero; // Velocity for gliding when stopping
 
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
         private const float _threshold = 0.01f;
+        private bool isGliding = false; // Flag to determine if gliding
 
         private void Awake()
         {
@@ -47,7 +42,14 @@ namespace StarterAssets
 
         private void Update()
         {
-            Move(); // Move the player in the current direction
+            if (!isGliding)
+            {
+                Move(); // Move the player in the current direction
+            }
+            else
+            {
+                Glide(); // Handle gliding to simulate inertia
+            }
         }
 
         private void LateUpdate()
@@ -58,7 +60,24 @@ namespace StarterAssets
         // Player movement tied to the currentDirection vector
         private void Move()
         {
-            _controller.Move(currentDirection * MoveSpeed * Time.deltaTime);
+            glideVelocity = currentDirection * MoveSpeed; // Set glide velocity based on current direction
+            _controller.Move(glideVelocity * Time.deltaTime); // Apply movement
+        }
+
+        // Simulate gliding by damping velocity
+        private void Glide()
+        {
+            // Reduce velocity over time
+            glideVelocity *= GlideDamping;
+
+            // Stop completely when velocity is very low
+            if (glideVelocity.magnitude < 0.01f)
+            {
+                glideVelocity = Vector3.zero;
+                isGliding = false; // Stop gliding
+            }
+
+            _controller.Move(glideVelocity * Time.deltaTime);
         }
 
         // Camera rotation controlled by mouse input
@@ -68,8 +87,9 @@ namespace StarterAssets
             {
                 float deltaTimeMultiplier = Time.deltaTime;
 
-                // Rotate camera up/down
-                _cinemachineTargetPitch += _input.look.y * RotationSpeed * deltaTimeMultiplier;
+                // Adjust rotation speed for better responsiveness
+                float mouseSensitivity = 5.0f; // Adjust sensitivity as needed
+                _cinemachineTargetPitch += _input.look.y * RotationSpeed * mouseSensitivity * deltaTimeMultiplier;
 
                 // Clamp the vertical camera rotation
                 _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
@@ -78,7 +98,7 @@ namespace StarterAssets
                 CinemachineCameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
 
                 // Rotate the player left/right
-                transform.Rotate(Vector3.up * _input.look.x * RotationSpeed * deltaTimeMultiplier);
+                transform.Rotate(Vector3.up * _input.look.x * RotationSpeed * mouseSensitivity * deltaTimeMultiplier);
             }
         }
 
@@ -86,11 +106,13 @@ namespace StarterAssets
         public void SetDirection(Vector3 direction)
         {
             currentDirection = direction; // Update the movement direction
+            isGliding = false; // Cancel gliding when a new direction is set
         }
 
         public void StopMovement()
         {
-            currentDirection = Vector3.zero; // Stop movement
+            currentDirection = Vector3.zero; // Clear current direction
+            isGliding = true; // Start gliding
         }
 
         // Utility to clamp angles for vertical rotation
