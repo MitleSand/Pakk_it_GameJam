@@ -7,7 +7,7 @@ public class P_PackBoyScript_TEST : MonoBehaviour
 
     public Animator animator;
 
-    private bool revealedPackboy = false;
+    public bool revealedPackboy = false;
 
     private bool canToggle = true; // Prevents spamming
 

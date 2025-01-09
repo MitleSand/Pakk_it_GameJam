@@ -10,6 +10,11 @@ namespace StarterAssets
         public float RotationSpeed = 5.0f; // Mouse rotation speed
         public float GlideDamping = 0.95f; // Glide factor; closer to 1 = slower stop
 
+        [Header("Grounded Movement")]
+        public float GroundMoveSpeed = 5.0f; // Movement speed on the ground
+        public float JumpForce = 5.0f; // Jump force when grounded
+        public float Gravity = -9.81f; // Gravity value
+
         [Header("Cinemachine")]
         public GameObject CinemachineCameraTarget; // Reference to camera target
         public float TopClamp = 90.0f; // Max vertical camera rotation
@@ -18,6 +23,7 @@ namespace StarterAssets
         private float _cinemachineTargetPitch;
         private Vector3 currentDirection = Vector3.zero; // The current direction of movement
         private Vector3 glideVelocity = Vector3.zero; // Velocity for gliding when stopping
+        private Vector3 groundedVelocity = Vector3.zero; // Velocity for grounded movement
 
         private CharacterController _controller;
         private StarterAssetsInputs _input;
@@ -25,6 +31,9 @@ namespace StarterAssets
 
         private const float _threshold = 0.01f;
         private bool isGliding = false; // Flag to determine if gliding
+
+        private bool isGrounded = false;
+        private P_PackBoyScript_TEST _packBoyScript;
 
         private void Awake()
         {
@@ -38,33 +47,43 @@ namespace StarterAssets
         {
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
+            _packBoyScript = Object.FindFirstObjectByType<P_PackBoyScript_TEST>();
         }
 
         private void Update()
         {
-            if (!isGliding)
+            isGrounded = _controller.isGrounded;
+
+            if (isGrounded)
             {
-                Move(); // Move the player in the current direction
+                HandleGroundedMovement();
+            }
+            else if (!isGliding)
+            {
+                Move(); // Move the player in the current direction (Zero-G)
             }
             else
             {
-                Glide(); // Handle gliding to simulate inertia
+                Glide(); // Handle gliding to simulate inertia (Zero-G)
             }
         }
 
         private void LateUpdate()
         {
-            CameraRotation(); // Handle camera rotation separately
+            if (_packBoyScript != null && !_packBoyScript.revealedPackboy)
+            {
+                CameraRotation(); // Handle camera rotation separately when packboy is hidden
+            }
         }
 
-        // Player movement tied to the currentDirection vector
+        // Player movement tied to the currentDirection vector (Zero-G)
         private void Move()
         {
             glideVelocity = currentDirection * MoveSpeed; // Set glide velocity based on current direction
             _controller.Move(glideVelocity * Time.deltaTime); // Apply movement
         }
 
-        // Simulate gliding by damping velocity
+        // Simulate gliding by damping velocity (Zero-G)
         private void Glide()
         {
             // Reduce velocity over time
@@ -102,7 +121,7 @@ namespace StarterAssets
             }
         }
 
-        // Methods to set the movement direction from the clickable buttons
+        // Methods to set the movement direction from the clickable buttons (Zero-G)
         public void SetDirection(Vector3 direction)
         {
             currentDirection = direction; // Update the movement direction
@@ -113,6 +132,25 @@ namespace StarterAssets
         {
             currentDirection = Vector3.zero; // Clear current direction
             isGliding = true; // Start gliding
+        }
+
+        // Handle movement when grounded
+        private void HandleGroundedMovement()
+        {
+            Vector3 move = new Vector3(_input.move.x, 0.0f, _input.move.y);
+            groundedVelocity.x = move.x * GroundMoveSpeed;
+            groundedVelocity.z = move.z * GroundMoveSpeed;
+
+            if (_controller.isGrounded && _input.jump)
+            {
+                groundedVelocity.y = JumpForce;
+            }
+            else
+            {
+                groundedVelocity.y += Gravity * Time.deltaTime;
+            }
+
+            _controller.Move(groundedVelocity * Time.deltaTime);
         }
 
         // Utility to clamp angles for vertical rotation
