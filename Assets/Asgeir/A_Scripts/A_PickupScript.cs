@@ -21,10 +21,24 @@ public class A_PickUpScript : MonoBehaviour
 
     public GameObject delivery;
 
+    // List to hold delivery GameObjects
+    public List<GameObject> deliveryPoints;
+
+    // Index to track current delivery point
+    private int currentDeliveryIndex = 0;
+
     void Start()
     {
         LayerNumber = LayerMask.NameToLayer("holdLayer"); // Assign layer for held objects
-        
+
+        // Validate the list
+        if (deliveryPoints == null || deliveryPoints.Count == 0)
+        {
+            Debug.LogError("Delivery points are not assigned!");
+        }
+        // Ensure only the first delivery point is active at the start
+        ActivateDeliveryPoint(currentDeliveryIndex);
+
     }
 
     void Update()
@@ -35,21 +49,19 @@ public class A_PickUpScript : MonoBehaviour
             if (heldObj == null)
             {
                 TryPickUpObject();
-                
+
             }
             else if (canDrop)
             {
                 StopClipping();
                 DropObject();
-                
+
             }
             else
             {
-                
-            }
-            
-        }
 
+            }
+        }
 
         // Inspect the held object
         if (heldObj != null && Input.GetKeyDown(KeyCode.Q))
@@ -65,13 +77,13 @@ public class A_PickUpScript : MonoBehaviour
             {
                 MoveObjectToPosition(inspectPos.position, inspectPos.rotation); // Move to inspect position
                 canDrop = false; // Prevent dropping while inspecting
-                
+
             }
             else
             {
                 MoveObjectToPosition(holdPos.position, holdPos.rotation); // Move to hold position
                 canDrop = true;
-                
+
             }
 
             // Throw the object
@@ -82,6 +94,42 @@ public class A_PickUpScript : MonoBehaviour
                 delivery.gameObject.SetActive(true);
             }
         }
+        // Example of switching to the next delivery point when pressing 'N'
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            GoToNextDeliveryPoint();
+        }
+    }
+    public void GoToNextDeliveryPoint()
+    {
+        if (deliveryPoints != null && deliveryPoints.Count > 0)
+        {
+            // Deactivate the current delivery point
+            deliveryPoints[currentDeliveryIndex].SetActive(false);
+
+            // Move to the next delivery point
+            currentDeliveryIndex = (currentDeliveryIndex + 1) % deliveryPoints.Count;
+            // Activate the new delivery point
+            ActivateDeliveryPoint(currentDeliveryIndex);
+
+            // Log the current delivery point
+            Debug.Log("Current Delivery Point: " + deliveryPoints[currentDeliveryIndex].name);
+        }
+        else
+        {
+            Debug.LogWarning("No delivery points available!");
+        }
+    }
+    // Function to activate a specific delivery point
+    private void ActivateDeliveryPoint(int index)
+    {
+        for (int i = 0; i < deliveryPoints.Count; i++)
+        {
+            // Ensure only the specified delivery point is active
+            deliveryPoints[i].SetActive(i == index);
+        }
+
+        Debug.Log("Active Delivery Point: " + deliveryPoints[index].name);
     }
 
     void TryPickUpObject()
@@ -153,4 +201,7 @@ public class A_PickUpScript : MonoBehaviour
             heldObj.transform.position = transform.position + new Vector3(0f, -0.5f, 0f);
         }
     }
+
+    
+
 }
