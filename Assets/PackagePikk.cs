@@ -6,6 +6,7 @@ public class PackagePikk : MonoBehaviour
     public Transform targetPosition;
     
     public A_PickupScript A_PickUpScript;
+    public PackageSpawner spawnerScript;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,6 +25,8 @@ public class PackagePikk : MonoBehaviour
             //other.gameObject.SetActive(false);
 
             A_PickUpScript.CompleteCurrentDelivery();
+            //spawnerScript.OnPackageDelivered();
+
 
             platformMover.CheckPackagesDelivered();
         }
