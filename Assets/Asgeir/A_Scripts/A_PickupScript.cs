@@ -84,7 +84,7 @@ public class A_PickupScript : MonoBehaviour
             }
 
             // Throw the object
-            if (Input.GetKeyDown(KeyCode.Mouse0) && canDrop)
+            if (Input.GetKeyDown(KeyCode.Mouse1) && canDrop)
             {
                 StopClipping();
                 ThrowObject();
