@@ -19,7 +19,7 @@ public class A_PickupScript : MonoBehaviour
 
 
 
-    
+    public bool completedDelivery = false;
 
     // List to hold delivery GameObjects
     public List<GameObject> deliveryPoints;
@@ -124,6 +124,7 @@ public class A_PickupScript : MonoBehaviour
     {
         if (deliveryPoints != null && deliveryPoints.Count > 0)
         {
+            completedDelivery = true;
             // Deactivate the current delivery point
             DeactivateCurrentDeliveryPoint();
 
@@ -138,12 +139,14 @@ public class A_PickupScript : MonoBehaviour
             {
                 Debug.Log("All delivery points are completed!");
             }
+            completedDelivery = false;
         }
     }
 
     // Function to activate a specific delivery point
     private void ActivateDeliveryPoint(int index)
     {
+        completedDelivery = true;
         for (int i = 0; i < deliveryPoints.Count; i++)
         {
             // Ensure only the specified delivery point is active
@@ -151,6 +154,7 @@ public class A_PickupScript : MonoBehaviour
         }
 
         Debug.Log("Active Delivery Point: " + deliveryPoints[index].name);
+        completedDelivery = false;
     }
 
     // Function to deactivate the current delivery point

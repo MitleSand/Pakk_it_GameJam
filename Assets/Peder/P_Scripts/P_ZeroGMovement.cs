@@ -32,7 +32,7 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
         private bool isGliding = false; // Flag to determine if gliding
 
-        private bool isGrounded = false;
+        public bool isGrounded = false;
         private P_PackBoyScript _packBoyScript;
 
         private void Awake()
