@@ -27,7 +27,7 @@ public class A_PickupScript : MonoBehaviour
 
     public Transform packageSpawn;
 
-    public bool completedDelivery = false;
+    
 
     // List to hold delivery GameObjects
     public List<GameObject> deliveryPoints;
