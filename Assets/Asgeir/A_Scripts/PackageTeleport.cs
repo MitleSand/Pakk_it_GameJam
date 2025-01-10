@@ -1,16 +1,39 @@
+using System.Collections;
 using UnityEngine;
 
-public class PackageTeleport : MonoBehaviour
+public class TeleportObject : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    // Reference to the GameObject that determines the teleport destination
+    public GameObject teleportDestination;
 
-    // Update is called once per frame
+    public A_PickupScript A_PickupScript;
+    public float teleportDelay;
+    public float delayDelay;
+
     void Update()
     {
         
+            Teleport();
+        
     }
-}
+
+    private void Teleport()
+    {
+        StartCoroutine(TeleportAfterDelay());
+        StartCoroutine(TeleportDelay());
+    }
+
+    
+    private IEnumerator TeleportAfterDelay()
+    {
+        yield return new WaitForSeconds(teleportDelay);
+        transform.position = teleportDestination.transform.position;
+        Debug.Log($"{gameObject.name} teleported after {teleportDelay} seconds to {teleportDestination}");
+        
+    }
+    private IEnumerator TeleportDelay()
+    {
+        yield return new WaitForSeconds(delayDelay);
+    }
+    }
+
