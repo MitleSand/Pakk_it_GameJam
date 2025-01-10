@@ -13,24 +13,30 @@ public class TeleportObject : MonoBehaviour
     private Rigidbody rb;
 
 
+
+
     void Start()
     {
         // Get the Rigidbody component
         rb = GetComponent<Rigidbody>();
 
+        
 
 
-
-
-
-
-
-
-        StartCoroutine(TeleportAfterDelay());
+        //StartCoroutine(TeleportAfterDelay());
         
     }
 
-    
+    private void Update()
+    {
+        if (A_PickupScript.completedDelivery)
+        {
+            transform.position = teleportDestination.transform.position;
+        }
+    }
+
+
+
     private IEnumerator TeleportAfterDelay()
     {
         yield return new WaitForSeconds(teleportDelay);

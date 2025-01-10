@@ -17,12 +17,21 @@ public class A_PickupScript : MonoBehaviour
     private bool isInspecting = false; // Tracks if the player is inspecting the object
     private int LayerNumber; // Layer index for holding objects
 
+    public GameObject cameraPos;
 
+    public GameObject package1;
+    public GameObject package2;
+    public GameObject package3;
+    public GameObject package4;
+    public GameObject package5;
+
+    public Transform packageSpawn;
 
     public bool completedDelivery = false;
 
     // List to hold delivery GameObjects
     public List<GameObject> deliveryPoints;
+    public List<GameObject> packageList;
 
     // Index to track current delivery point
     private int currentDeliveryIndex = 0;
@@ -122,9 +131,11 @@ public class A_PickupScript : MonoBehaviour
     // Call this method to mark the current delivery point as completed
     public void CompleteCurrentDelivery()
     {
+
         if (deliveryPoints != null && deliveryPoints.Count > 0)
         {
-            completedDelivery = true;
+            
+            Debug.Log("completedDelivery=true");
             // Deactivate the current delivery point
             DeactivateCurrentDeliveryPoint();
 
@@ -133,28 +144,56 @@ public class A_PickupScript : MonoBehaviour
             if (currentDeliveryIndex < deliveryPoints.Count)
             {
                 ActivateDeliveryPoint(currentDeliveryIndex);
+
                 Debug.Log("Moved to the next delivery point: " + deliveryPoints[currentDeliveryIndex].name);
             }
             else
             {
                 Debug.Log("All delivery points are completed!");
             }
-            completedDelivery = false;
+            
+        }
+    }
+
+    private void SpawnBox(int whichBox)
+    {
+        if (whichBox == 1)
+        {
+            package1.transform.position = packageSpawn.transform.position;
+        }
+        else if (whichBox == 2)
+        {
+            package2.transform.position = packageSpawn.transform.position;
+        }
+        else if (whichBox == 3)
+        {
+            package3.transform.position = packageSpawn.transform.position;
+        }
+        else if (whichBox == 4)
+        {
+            package4.transform.position = packageSpawn.transform.position;
+        }
+        else if (whichBox == 5)
+        {
+            package5.transform.position = packageSpawn.transform.position;
         }
     }
 
     // Function to activate a specific delivery point
     private void ActivateDeliveryPoint(int index)
     {
-        completedDelivery = true;
+        
+
         for (int i = 0; i < deliveryPoints.Count; i++)
         {
             // Ensure only the specified delivery point is active
             deliveryPoints[i].SetActive(i == index);
+            if (i == index) { SpawnBox(i+1); }
+
         }
 
         Debug.Log("Active Delivery Point: " + deliveryPoints[index].name);
-        completedDelivery = false;
+        
     }
 
     // Function to deactivate the current delivery point
@@ -172,7 +211,7 @@ public class A_PickupScript : MonoBehaviour
     void TryPickUpObject()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
+        if (Physics.Raycast(cameraPos.transform.position, cameraPos.transform.forward, out hit, pickUpRange))
         {
             if (hit.transform.gameObject.tag == "canPickUp")
             {
