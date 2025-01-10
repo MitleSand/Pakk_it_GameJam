@@ -10,17 +10,24 @@ public class TeleportObject : MonoBehaviour
     public float teleportDelay;
     public float delayDelay;
 
-    void Update()
-    {
-        
-            Teleport();
-        
-    }
+    private Rigidbody rb;
 
-    private void Teleport()
+
+    void Start()
     {
+        // Get the Rigidbody component
+        rb = GetComponent<Rigidbody>();
+
+
+
+
+
+
+
+
+
         StartCoroutine(TeleportAfterDelay());
-        StartCoroutine(TeleportDelay());
+        
     }
 
     
@@ -28,12 +35,9 @@ public class TeleportObject : MonoBehaviour
     {
         yield return new WaitForSeconds(teleportDelay);
         transform.position = teleportDestination.transform.position;
-        Debug.Log($"{gameObject.name} teleported after {teleportDelay} seconds to {teleportDestination}");
+        
         
     }
-    private IEnumerator TeleportDelay()
-    {
-        yield return new WaitForSeconds(delayDelay);
-    }
+    
     }
 

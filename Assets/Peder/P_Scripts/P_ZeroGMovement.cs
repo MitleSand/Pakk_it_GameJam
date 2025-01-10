@@ -57,6 +57,7 @@ namespace StarterAssets
             if (isGrounded)
             {
                 HandleGroundedMovement();
+                
             }
             else if (!isGliding)
             {
