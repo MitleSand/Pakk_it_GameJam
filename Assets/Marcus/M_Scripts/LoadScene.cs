@@ -12,7 +12,7 @@ public class PlatformMover : MonoBehaviour
 
     private bool isMoving = false;
 
-    public FirstPersonController firstPersonController;
+    public P_ZeroGMovement firstPersonController;
 
     
     void Update()
@@ -36,7 +36,7 @@ public class PlatformMover : MonoBehaviour
             }
         }
 
-        if (allDelivered && (firstPersonController.Grounded = true))
+        if (allDelivered && (firstPersonController.isGrounded = true))
         {
             StartMoving();
             Debug.Log("Ismoving");
